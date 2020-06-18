@@ -36,9 +36,9 @@ export class ViewTrainingComponent implements OnInit, OnDestroy {
   trainingsSub: any;
   @Input() serviceNames: ServiceOperationNames [];
   records = 10;
-  trainingsPerPage = 5;
+  trainingsPerPage = 10;
   currentPage = 1;
-  pageSizeOptions = [1, 2, 5, 10];
+  pageSizeOptions = [5, 10, 20, 50];
   private authStatusSub: Subscription;
   userIsAuthenticated = false;
   userId: string;

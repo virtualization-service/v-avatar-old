@@ -23,7 +23,7 @@
               <div class="tbl-name"> {{element.requestContent}} </div>
               <div class="tbl-name"> {{element.responseContent}} </div>
               <mat-divider></mat-divider>
-              <mat-action-row *ngIf="userIsAuthenticated">
+              <mat-action-row>
                 <a mat-button color="primary" [routerLink]="['/priotize-training/']">Priotize</a>
                 <a mat-button color="accent" [routerLink]="['/edit/', element.id]">Update</a>
                 <button mat-button color="warn" (click)="onDelete(element.id)">Delete</button>

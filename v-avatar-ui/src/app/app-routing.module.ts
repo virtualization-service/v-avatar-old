@@ -8,11 +8,11 @@ import { ConfigureTrainingComponent } from './trainings/configure-training/confi
 
 const routes: Routes = [
   { path: '', component: ViewTrainingComponent },
-  { path: 'new-training', component: NewTrainingComponent, canActivate: [AuthGuard] },
-  { path: 'view-training', component: ViewTrainingComponent, canActivate: [AuthGuard] },
-  { path: 'priotize-training', component: PriotizeTrainingComponent, canActivate: [AuthGuard] },
-  { path: 'configure-training', component: ConfigureTrainingComponent, canActivate: [AuthGuard] },
-  { path: 'edit/:trainingId', component: PriotizeTrainingComponent, canActivate: [AuthGuard] },
+  { path: 'new-training', component: NewTrainingComponent },
+  { path: 'view-training', component: ViewTrainingComponent },
+  { path: 'priotize-training', component: PriotizeTrainingComponent },
+  { path: 'configure-training', component: ConfigureTrainingComponent },
+  { path: 'edit/:trainingId', component: PriotizeTrainingComponent },
   { path: 'auth', loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule) },
 ];
 

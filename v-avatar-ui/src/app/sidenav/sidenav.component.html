@@ -5,7 +5,8 @@
     </button>
     <img src="assets/Acc_Logo_Black.PNG" class="acn-logo" />
     <span class="spacer"></span>
-    <img src="assets/thumbnail_image.png" class="vavatar-logo" />
+    <img src="assets/v-avatar.png" class="vavatar-logo" />
+    <span class="avatar-text"> V-AVATAR</span>
     <span class="spacer"></span>
     <ul>
       <li *ngIf="!userIsAuthenticated">
@@ -24,7 +25,7 @@
 <mat-sidenav-container class="mat-des-container">
   <mat-sidenav #drawer mode="side" opened role="navigation">
     <mat-nav-list>
-      <div *ngIf="userIsAuthenticated">
+      <div>
         <a mat-list-item routerLink="/new-training" routerLinkActive="mat-accent">
           <span class="material-icons">post_add</span>New Training
         </a>

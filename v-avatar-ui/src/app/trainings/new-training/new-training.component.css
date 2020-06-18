@@ -1,12 +1,15 @@
 mat-card {
   flex-wrap: wrap;
   margin: 0 auto;
-  width: 70%;
+  width: 80%;
 }
 
 mat-form-field,
 textarea {
   width: 100%;
+}
+.color {
+  background-color: green;
 }
 
 mat-spinner {
