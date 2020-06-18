@@ -1,0 +1,137 @@
+<mat-card>
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <form [formGroup]="form" (submit)="onSaveTraining()" *ngIf="!isLoading">
+    <mat-form-field>
+      <input matInput type="text" formControlName="serviceName" placeholder="Service Name">
+      <mat-error *ngIf="form.get('serviceName').invalid">Please enter a service name.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" formControlName="serviceUrl" placeholder="Service Url">
+      <mat-error *ngIf="form.get('serviceUrl').invalid">Please enter a service url.</mat-error>
+    </mat-form-field>
+    <div>
+      <mat-form-field class="authType">
+        <mat-select ngModel formControlName="authType" (ngModelChange)="onChangeAuthType($event)">
+          <mat-option *ngFor="let authType of authTypes" [value]="authType.value">
+            {{authType.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div class="base-type" *ngIf="authType === 'BasicAuth'">
+        <mat-form-field class="field-type">
+          <input matInput type="text" formControlName="username" placeholder="User Name:">
+          <mat-error *ngIf="form.get('username').invalid">Please enter user name.</mat-error>
+        </mat-form-field>
+        <mat-form-field class="field-type">
+          <input matInput type="text" formControlName="password" placeholder="Password:">
+          <mat-error *ngIf="form.get('password').invalid">Please enter password.</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="base-type" *ngIf="authType === 'ApiKey'">
+        <mat-form-field class="field-type">
+          <input matInput type="text" formControlName="tokenKey" placeholder="Token Key:">
+          <mat-error *ngIf="form.get('tokenKey').invalid">Please enter token key.</mat-error>
+        </mat-form-field>
+        <mat-form-field class="field-type">
+          <input matInput type="text" formControlName="tokenValue" placeholder="Token Value:">
+          <mat-error *ngIf="form.get('tokenValue').invalid">Please enter token value.</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div>
+      <mat-form-field class="authType">
+        <mat-select ngModel formControlName="actionType" (ngModelChange)="onChangeActionType($event)">
+          <mat-option *ngFor="let actionType of actionTypes" [value]="actionType.value">
+            {{actionType.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div class="base-type" *ngIf="actionType === 'SOAP'">
+        <mat-form-field class="field-type">
+          <input matInput type="text" formControlName="soapAction" placeholder="Soap Action:">
+          <mat-error *ngIf="form.get('soapAction').invalid">Please enter soap action.</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="base-type" *ngIf="actionType === 'RESTFUL'">
+        <mat-form-field class="field-type">
+          <mat-select ngModel formControlName="methodType">
+            <mat-option *ngFor="let methodType of methodTypes" [value]="methodType.value">
+              {{methodType.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <mat-label class="request">Request Content:</mat-label>
+    <mat-divider></mat-divider>
+    <mat-tab-group>
+      <mat-tab label="Headers">
+        <!-- <app-header-items></app-header-items> -->
+        <div [formGroup]="requestHeaderForm">
+          <div formArrayName="requestHeaders">
+            <div class="remove-content" *ngFor="let item of requestHeaders.controls; let pointIndex = index" [formGroupName]="pointIndex">
+              <div>
+                <mat-form-field class="key-field">
+                  <input matInput type="text" formControlName="headerKey" placeholder="Key:">
+                </mat-form-field>
+                <mat-form-field class="value-field">
+                  <input matInput type="text" formControlName="headerValue" placeholder="Value:">
+                </mat-form-field>
+                <button mat-raised-button color="primary" class="remove" type="button" (click)="removeHeaderKeys(pointIndex, 'request')">
+                  <span class="material-icons">remove</span>
+                </button>
+              </div>      
+            </div>
+            <div class="add-content">
+              <button mat-raised-button color="primary" type="button" (click)="addHeaderKeys('request')">
+                <span class="material-icons">add</span>
+              </button>
+            </div>
+          </div>
+        </div>        
+      </mat-tab>
+      <mat-tab label="Request Body">
+        <mat-form-field>
+          <textarea matInput formControlName="requestContent" placeholder="Request Content"></textarea>
+          <mat-error *ngIf="form.get('requestContent').invalid">Please enter request content.</mat-error>
+        </mat-form-field>
+      </mat-tab>
+    </mat-tab-group>
+    <mat-label class="response">Response Content:</mat-label>
+    <mat-divider></mat-divider>
+    <mat-tab-group>
+      <mat-tab label="Headers">
+        <!-- <app-header-items></app-header-items> -->
+        <div [formGroup]="responseHeaderForm">
+          <div formArrayName="responseHeaders">
+            <div class="remove-content" *ngFor="let item of responseHeaders.controls; let pointIndex = index" [formGroupName]="pointIndex">
+              <div>
+                <mat-form-field class="key-field">
+                  <input matInput type="text" formControlName="headerKey" placeholder="Key:">
+                </mat-form-field>
+                <mat-form-field class="value-field">
+                  <input matInput type="text" formControlName="headerValue" placeholder="Value:">
+                </mat-form-field>
+                <button mat-raised-button color="primary" class="remove" type="button" (click)="removeHeaderKeys(pointIndex, 'response')">
+                  <span class="material-icons">remove</span>
+                </button>
+              </div>      
+            </div>
+            <div class="add-content">
+              <button mat-raised-button color="primary" type="button" (click)="addHeaderKeys('response')">
+                <span class="material-icons">add</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="Response Body">
+        <mat-form-field>
+          <textarea matInput formControlName="responseContent" placeholder="Response Content"></textarea>
+          <mat-error *ngIf="form.get('responseContent').invalid">Please enter response content.</mat-error>
+        </mat-form-field>
+      </mat-tab>
+    </mat-tab-group>
+    <button mat-raised-button color="accent" type="submit">Save Training</button>
+  </form>
+</mat-card>

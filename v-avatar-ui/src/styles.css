@@ -1,0 +1,65 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-image: linear-gradient(-225deg, #e3fdf5 0%, #ffe6fa 100%);
+  background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: "Abel", sans-serif;
+  opacity: 0.95;
+  /* background-image: linear-gradient(to top, #d9afd9 0%, #97d9e1 100%); */
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+form {
+  min-height: 300px;
+  height: auto;
+  border-radius: 5px;
+  margin: 2% auto;
+  box-shadow: 0 9px 50px hsla(20, 67%, 75%, 0.31);
+  padding: 2%;
+  background-image: linear-gradient(-225deg, #e3fdf5 50%, #ffe6fa 50%);
+}
+
+form .con {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+
+@keyframes ani9 {
+  0% {
+    transform: translateY(3px);
+  }
+  100% {
+    transform: translateY(5px);
+  }
+}
+
+mat-card {
+  width: 320px;
+  min-height: 300px;
+  height: auto;
+  border-radius: 15px !important;
+  margin: 2% auto;
+  box-shadow: 0 9px 50px hsla(20, 67%, 75%, 0.31);
+  padding: 10px !important;
+  background-image: linear-gradient(-225deg, #e3fdf5 50%, #ffe6fa 50%);
+}
+

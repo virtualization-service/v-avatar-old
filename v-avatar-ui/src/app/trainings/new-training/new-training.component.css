@@ -1,0 +1,70 @@
+mat-card {
+  flex-wrap: wrap;
+  margin: 0 auto;
+  width: 70%;
+}
+
+mat-form-field,
+textarea {
+  width: 100%;
+}
+
+mat-spinner {
+  margin: auto;
+}
+
+.authType {
+  width: 20%;
+}
+
+.base-type {
+  float: right;
+  width: 70%;
+}
+
+.rest-type {
+  float: right;
+  width: 50%;
+}
+.rest-method-type {
+  width: 40%;
+}
+
+
+.field-type {
+  padding-left: 30px;
+  width: 50%;
+}
+
+.request, .response {
+  color: darkorange;
+}
+
+.key-field {
+  width: 40%;
+}
+
+.value-field {
+  margin-left: 20px;
+  width: 40%;
+}
+
+.remove-content {
+  width: 90%;
+}
+
+.add-content {
+  width: 10%;
+  float: right;
+  margin-top: -48px;
+}
+
+.remove {
+  margin-left: 40px;
+  background-color: red;
+}
+
+.add {
+    float: right;
+    margin-top: -50px;
+}

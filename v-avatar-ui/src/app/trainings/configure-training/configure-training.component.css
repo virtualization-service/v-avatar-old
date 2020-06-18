@@ -1,0 +1,35 @@
+.content {
+  width: 36%;
+  margin: 0 auto;
+  text-align: center;
+  min-height: 300px;
+  height: auto;
+  border-radius: 15px !important;
+  margin: 2% auto;
+  box-shadow: 0 9px 50px hsla(20, 67%, 75%, 0.31);
+  padding: 10px !important;
+  background: white;
+}
+
+.config-h2 {
+  margin: 0 8px 16px;
+}
+
+.config-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+}
+
+.config-margin-label {
+  float: right;
+  border-radius: 4px 4px 0 0;
+}
+
+.mat-slider-horizontal {
+  width: 200px;
+}
+
+.mat-card + .mat-card {
+  margin-top: 8px;
+}

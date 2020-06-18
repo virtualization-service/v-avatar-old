@@ -1,0 +1,24 @@
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-spinner {
+  margin: auto;
+}
+
+h1 {
+  color: darkorange;
+  text-align: center;
+  font-weight: bolder;
+}
+
+button[type="submit"]{
+  float: right;
+}

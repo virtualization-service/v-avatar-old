@@ -1,0 +1,23 @@
+<div class="content">
+    <mat-list-item class="responsetime">Response Time</mat-list-item>
+    <mat-divider></mat-divider>
+    <div>
+        <mat-slider class="config-margin" [max]="max" [min]="min" [step]="step" thumbLabel
+            [tickInterval]="getSliderTickInterval()" [(ngModel)]="minValue" [vertical]="vertical">
+        </mat-slider>
+        <mat-form-field class="config-margin-label">
+            <mat-label>Min Value:</mat-label>
+            <input matInput type="number" [(ngModel)]="minValue">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-slider class="config-margin" [max]="max" [min]="min" [step]="step" thumbLabel
+            [tickInterval]="getSliderTickInterval()" [(ngModel)]="maxValue" [vertical]="vertical">
+        </mat-slider>
+        <mat-form-field class="config-margin-label">
+            <mat-label>Max Value:</mat-label>
+            <input matInput type="number" [(ngModel)]="maxValue">
+        </mat-form-field>
+    </div>
+
+</div>

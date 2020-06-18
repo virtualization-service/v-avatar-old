@@ -1,0 +1,103 @@
+mat-sidenav {
+  background-image: linear-gradient(-225deg, #e3fdf5 0%, #ffe6fa 100%);
+  background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: "Abel", sans-serif;
+  opacity: 0.95;
+}
+
+mat-sidenav-content {
+  background-image: linear-gradient(-225deg, #e3fdf5 0%, #ffe6fa 100%);
+  background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: "Abel", sans-serif;
+  opacity: 0.95;
+}
+
+.div-scrollable {
+  display: fixed;
+  justify-content: center;
+  align-items: center;
+  background-color: yellow;
+  height: auto;
+}
+
+mat-toolbar {
+  position: relative;
+  z-index: 0;
+}
+
+@media screen and (min-width: 960px) {
+  mat-toolbar {
+    z-index: 50;
+  }
+}
+
+@media screen and (max-width: 599px) {
+  mat-toolbar {
+    z-index: 0;
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .main-sidenav-container {
+    width: 100%;
+    height: calc(100vh - 56px);
+    z-index: 100;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .main-sidenav-container {
+    width: 100%;
+    height: calc(100vh - 64px);
+  }
+}
+
+.mat-des-container {
+  background-image: linear-gradient(-225deg, #e3fdf5 0%, #ffe6fa 100%);
+  background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: "Abel", sans-serif;
+  opacity: 0.95;
+  height: 600px;
+  padding: 10px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+a {
+  text-decoration: node;
+  color: white;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.acn-logo {
+  display: inline-block;
+  height: 38px;
+  position: relative;
+  width: 110px;
+  margin-top: -20px;
+  margin-left: 10px;
+}
+
+.vavatar-logo {
+  width: 72px;
+  display: inline-block;
+  height: 64px;
+  position: relative;
+}
