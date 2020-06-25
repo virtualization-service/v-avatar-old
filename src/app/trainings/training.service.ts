@@ -8,9 +8,9 @@ import { environment } from '../../environments/environment';
 import { MessageDialogComponent } from '../message-dialog/message-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 const BACKEND_URL = environment.apiUrl + '/trainings/';
-const virtualizationTrainUrl = environment.virtualizationUrl;
-const priotizeTrainUrl = environment.priotizeTrainingUrl;
-const operationsUrl = environment.operationsUrl;
+const virtualizationTrainUrl = "environment.virtualizationUrl";
+const priotizeTrainUrl = "environment.priotizeTrainingUrl";
+const operationsUrl = "environment.operationsUrl";
 
 @Injectable({ providedIn: 'root' })
 export class TrainingService {
