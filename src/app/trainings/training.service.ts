@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
 import { MessageDialogComponent } from '../message-dialog/message-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 const BACKEND_URL = "environment.apiUrl" + '/trainings/';
-const virtualizationTrainUrl = "environment.virtualizationUrl";
+const virtualizationTrainUrl = "http://controller-service-virtualization.apps.openshift.ne-innovation.com/virtualization-train";
 const priotizeTrainUrl = "environment.priotizeTrainingUrl";
 const operationsUrl = "environment.operationsUrl";
 
