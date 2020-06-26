@@ -5,6 +5,8 @@ FROM node:lts-alpine AS build
 #### make the 'app' folder the current working directory
 WORKDIR /usr/src/app
 
+RUN ls -a
+
 #### copy both 'package.json' and 'package-lock.json' (if available)
 COPY package*.json ./
 
@@ -23,7 +25,7 @@ RUN npm run build --production
 ### STAGE 2: Run ###
 FROM nginxinc/nginx-unprivileged
 
-RUN echo ls -a
+RUN ls -a
 
 #### copy nginx conf
 COPY ./config/nginx.conf /etc/nginx/conf.d/default.conf
