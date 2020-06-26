@@ -20,12 +20,8 @@ COPY . .
 #### generate build --prod
 RUN npm run build --production
 
-RUN ls /usr/src/app/dist -a
-
 ### STAGE 2: Run ###
 FROM nginxinc/nginx-unprivileged
-
-RUN ./config -a
 
 #### copy nginx conf
 COPY ./config/nginx.conf /etc/nginx/conf.d/default.conf
