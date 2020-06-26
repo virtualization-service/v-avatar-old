@@ -5,8 +5,6 @@ FROM node:lts-alpine AS build
 #### make the 'app' folder the current working directory
 WORKDIR /usr/src/app
 
-RUN ls /usr/src/app -a
-
 #### copy both 'package.json' and 'package-lock.json' (if available)
 COPY package*.json ./
 
@@ -22,7 +20,7 @@ COPY . .
 #### generate build --prod
 RUN npm run build --production
 
-RUN ls /usr/src/app -a
+RUN ls /usr/src/app/dist -a
 
 ### STAGE 2: Run ###
 FROM nginxinc/nginx-unprivileged
