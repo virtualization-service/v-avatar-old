@@ -1,4 +1,3 @@
-  
 ### STAGE 1: Build ###
 FROM node:lts-alpine AS build
 
