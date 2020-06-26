@@ -23,6 +23,8 @@ RUN npm run build --production
 ### STAGE 2: Run ###
 FROM nginxinc/nginx-unprivileged
 
+RUN echo ls -a
+
 #### copy nginx conf
 COPY ./config/nginx.conf /etc/nginx/conf.d/default.conf
 
