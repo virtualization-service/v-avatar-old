@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: '', component: ViewTrainingComponent },
   { path: 'new-training', component: NewTrainingComponent },
   { path: 'view-training', component: ViewTrainingComponent },
-  { path: 'priotize-training', component: PriotizeTrainingComponent },
+  { path: 'priotize/:serviceId', component: PriotizeTrainingComponent },
   { path: 'configure-training', component: ConfigureTrainingComponent },
   { path: 'edit/:trainingId', component: PriotizeTrainingComponent },
   { path: 'auth', loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule) },

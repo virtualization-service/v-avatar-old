@@ -17,6 +17,10 @@ body {
   /* background-image: linear-gradient(to top, #d9afd9 0%, #97d9e1 100%); */
 }
 
+.mat-toolbar.mat-primary {
+  background-color: #c2185b;
+}
+
 * {
   padding: 0;
   margin: 0;

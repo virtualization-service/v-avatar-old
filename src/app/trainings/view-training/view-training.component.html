@@ -20,11 +20,11 @@
               <div class="tbl-weight"> {{element.methodType}} </div>
             </div> -->
             <div class="tbl-description">
-              <div class="tbl-name"> {{element.requestContent}} </div>
-              <div class="tbl-name"> {{element.responseContent}} </div>
+              <!-- <div class="tbl-name"> {{element.requestContent}} </div> -->
+              <!-- <div class="tbl-name"> {{element.responseContent}} </div> -->
               <mat-divider></mat-divider>
               <mat-action-row>
-                <a mat-button color="primary" [routerLink]="['/priotize-training/']">Priotize</a>
+                <a mat-button color="primary" [routerLink]="['/priotize/', element.serviceName]">Priotize</a>
                 <a mat-button color="accent" [routerLink]="['/edit/', element.id]">Update</a>
                 <button mat-button color="warn" (click)="onDelete(element.id)">Delete</button>
               </mat-action-row> 

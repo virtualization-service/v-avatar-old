@@ -8,7 +8,7 @@ import { MessageDialogComponent } from '../message-dialog/message-dialog.compone
 import { MatDialog } from '@angular/material/dialog';
 const virtualizationUrl = 'http://controller-service-virtualization.apps.openshift.ne-innovation.com/virtualization-train';
 const operationsUrl = 'http://datasaver-virtualization.apps.openshift.ne-innovation.com/api/Data/operations';
-const priotizeTrainingUrl = 'http://datasaver-virtualization.apps.openshift.ne-innovation.com/api/Data/ranker?operation=/WeatherWS/Weather.asmx-GetWeatherByZip';
+const priotizeTrainingUrl = 'http://datasaver-virtualization.apps.openshift.ne-innovation.com/api/Data/ranker?operation=';
 
 @Injectable({ providedIn: 'root' })
 export class TrainingService {
@@ -47,8 +47,8 @@ export class TrainingService {
     );
   }
 
-  getPriorityTrainings() {
-    this.http.get<{ operation: any; data: any; }>(priotizeTrainingUrl)
+  getPriorityTrainings(servicePath: string) {
+    this.http.get<{ operation: any; data: any; }>(priotizeTrainingUrl + servicePath)
     .pipe(
       map((rankersData) => {
         return {

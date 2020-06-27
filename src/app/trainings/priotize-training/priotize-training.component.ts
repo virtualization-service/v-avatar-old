@@ -6,6 +6,7 @@ import {
 } from '@angular/cdk/drag-drop';
 import { TrainingService } from '../training.service';
 import { Rankers } from '../training.model';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-priotize-training',
@@ -15,21 +16,25 @@ import { Rankers } from '../training.model';
 export class PriotizeTrainingComponent implements OnInit {
   systemDefined = [];
   userModified = [];
+  priotizedArr = [];
   rankersSub: any;
   @Input() rankers: Rankers;
-  constructor(public trainingsService: TrainingService){ }
+  constructor(public trainingsService: TrainingService, public route: ActivatedRoute) {}
   ngOnInit(): void {
-    this.trainingsService.getPriorityTrainings();
+    this.route.paramMap.subscribe((paramMap: ParamMap) => {
+      if (paramMap.has('serviceId')) {
+        this.trainingsService.getPriorityTrainings(paramMap.get('serviceId'));
+      }
+    });
     this.rankersSub = this.trainingsService
       .getRankerTrainingUpdateListener()
-      .subscribe((rankersData: { rankers: Rankers; }) => {
-        setTimeout(() => {
-        }, 2000);
+      .subscribe((rankersData: { rankers: Rankers }) => {
+        setTimeout(() => {}, 2000);
         this.systemDefined = rankersData.rankers.data.map((opt) => {
-           return (opt.rank + '   ' + opt.name);
+          return opt.rank + '   ' + opt.name;
         });
         // TODO: Santosh - Need to modify the logic later
-        const tt = this.systemDefined;
+        const tt =  this.systemDefined;
         this.userModified = tt;
       });
   }
@@ -48,5 +53,13 @@ export class PriotizeTrainingComponent implements OnInit {
         event.currentIndex
       );
     }
+    this.priotizedArr = event.container.data;
+  }
+
+  updatePriority() {
+    if (!this.priotizedArr.length) {
+      this.priotizedArr = this.userModified;
+    }
+    console.log('On click of priority:   ' + this.priotizedArr);
   }
 }
