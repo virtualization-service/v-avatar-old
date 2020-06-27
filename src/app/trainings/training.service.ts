@@ -4,13 +4,11 @@ import { Training, TrainingInfo, Rankers, ServiceOperationNames } from './traini
 import { map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { environment } from '../../environments/environment';
 import { MessageDialogComponent } from '../message-dialog/message-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-const BACKEND_URL = "environment.apiUrl" + '/trainings/';
-const virtualizationTrainUrl = "http://controller-service-virtualization.apps.openshift.ne-innovation.com/virtualization-train";
-const priotizeTrainUrl = "environment.priotizeTrainingUrl";
-const operationsUrl = "environment.operationsUrl";
+const virtualizationUrl = 'http://controller-service-virtualization.apps.openshift.ne-innovation.com/virtualization-train';
+const operationsUrl = 'http://datasaver-virtualization.apps.openshift.ne-innovation.com/api/Data/operations';
+const priotizeTrainingUrl = 'http://datasaver-virtualization.apps.openshift.ne-innovation.com/api/Data/ranker?operation=/WeatherWS/Weather.asmx-GetWeatherByZip';
 
 @Injectable({ providedIn: 'root' })
 export class TrainingService {
@@ -37,7 +35,7 @@ export class TrainingService {
         'Content-Type':  'application/json'
       })
     };
-    this.http.post<{ result: string; }>(virtualizationTrainUrl, requestData, httpOptions)
+    this.http.post<{ result: string; }>(virtualizationUrl, requestData, httpOptions)
     .subscribe(
       (responseData) => {
         this.dialog.open(MessageDialogComponent, { data: { message: responseData.result } });
@@ -50,7 +48,7 @@ export class TrainingService {
   }
 
   getPriorityTrainings() {
-    this.http.get<{ operation: any; data: any; }>(priotizeTrainUrl)
+    this.http.get<{ operation: any; data: any; }>(priotizeTrainingUrl)
     .pipe(
       map((rankersData) => {
         return {
