@@ -5,7 +5,7 @@ import {
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
 import { TrainingService } from '../training.service';
-import { Rankers } from '../training.model';
+import { Rankers, RankerData } from '../training.model';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
@@ -14,12 +14,17 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
   styleUrls: ['./priotize-training.component.css'],
 })
 export class PriotizeTrainingComponent implements OnInit {
-  systemDefined = [];
-  userModified = [];
-  priotizedArr = [];
+  systemDefined: RankerData[];
+  userModified: RankerData[];
+  priotizedArr: RankerData[];
+  operationName: any;
+  rankerRequest: Rankers;
   rankersSub: any;
   @Input() rankers: Rankers;
-  constructor(public trainingsService: TrainingService, public route: ActivatedRoute) {}
+  constructor(
+    public trainingsService: TrainingService,
+    public route: ActivatedRoute
+  ) {}
   ngOnInit(): void {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has('serviceId')) {
@@ -30,12 +35,10 @@ export class PriotizeTrainingComponent implements OnInit {
       .getRankerTrainingUpdateListener()
       .subscribe((rankersData: { rankers: Rankers }) => {
         setTimeout(() => {}, 2000);
-        this.systemDefined = rankersData.rankers.data.map((opt) => {
-          return opt.rank + '   ' + opt.name;
-        });
-        // TODO: Santosh - Need to modify the logic later
-        const tt =  this.systemDefined;
-        this.userModified = tt;
+        this.operationName = rankersData.rankers.operation;
+        this.systemDefined = rankersData.rankers.data;
+        const slowClone = [...this.systemDefined];
+        this.userModified = slowClone;
       });
   }
   drop(event: CdkDragDrop<string[]>) {
@@ -53,13 +56,18 @@ export class PriotizeTrainingComponent implements OnInit {
         event.currentIndex
       );
     }
-    this.priotizedArr = event.container.data;
+    this.priotizedArr = this.userModified;
   }
 
   updatePriority() {
-    if (!this.priotizedArr.length) {
-      this.priotizedArr = this.userModified;
-    }
-    console.log('On click of priority:   ' + this.priotizedArr);
+    this.rankerRequest = {
+      data: this.priotizedArr,
+      operation: this.operationName
+    };
+    this.trainingsService.updateRakerTraining(this.rankerRequest);
+  }
+  resetPriority() {
+    const slowClone = [...this.systemDefined];
+    this.userModified = slowClone;
   }
 }

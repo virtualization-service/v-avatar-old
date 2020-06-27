@@ -8,8 +8,7 @@ import { MessageDialogComponent } from '../message-dialog/message-dialog.compone
 import { MatDialog } from '@angular/material/dialog';
 const virtualizationUrl = 'http://controller-service-virtualization.apps.openshift.ne-innovation.com/virtualization-train';
 const operationsUrl = 'http://datasaver-virtualization.apps.openshift.ne-innovation.com/api/Data/operations';
-const priotizeTrainingUrl = 'http://datasaver-virtualization.apps.openshift.ne-innovation.com/api/Data/ranker?operation=';
-
+const rankerUrl = 'http://datasaver-virtualization.apps.openshift.ne-innovation.com/api/Data/ranker';
 @Injectable({ providedIn: 'root' })
 export class TrainingService {
   private trainingsUpdated = new Subject<{
@@ -39,7 +38,7 @@ export class TrainingService {
     .subscribe(
       (responseData) => {
         this.dialog.open(MessageDialogComponent, { data: { message: responseData.result } });
-        this.router.navigate(['/']);
+        this.router.navigate(['/new-training']);
       },
       (error) => {
         this.dialog.open(MessageDialogComponent, { data: { message: error } });
@@ -48,7 +47,7 @@ export class TrainingService {
   }
 
   getPriorityTrainings(servicePath: string) {
-    this.http.get<{ operation: any; data: any; }>(priotizeTrainingUrl + servicePath)
+    this.http.get<{ operation: any; data: any; }>(rankerUrl + '?operation=' + servicePath)
     .pipe(
       map((rankersData) => {
         return {
@@ -66,6 +65,28 @@ export class TrainingService {
       });
     });
   }
+
+  updateRakerTraining(rankersData: Rankers) {
+    const requestData = JSON.stringify(rankersData);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    };
+    this.http.post<{ result: string; }>(rankerUrl, requestData, httpOptions)
+    .subscribe(
+      (responseData) => {
+        debugger;
+        this.dialog.open(MessageDialogComponent, { data: { message: responseData.result } });
+        this.router.navigate(['/']);
+      },
+      (error) => {
+        debugger;
+        this.dialog.open(MessageDialogComponent, { data: { message: error } });
+      }
+    );
+  }
+
 
   getTrainedServices() {
     this.http.get<{ }>(operationsUrl)

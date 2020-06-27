@@ -10,6 +10,6 @@ export class MessageDialogComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: { message: any }) {}
 
-  message: 'Training Saved Successfully';
+  message: 'Saved Successfully';
   ngOnInit(): void {}
 }

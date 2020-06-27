@@ -1,10 +1,10 @@
 <mat-card>
   <mat-spinner *ngIf="isLoading"></mat-spinner>
   <form [formGroup]="form" (submit)="onSaveTraining()" *ngIf="!isLoading">
-    <mat-form-field>
+    <!-- <mat-form-field>
       <input matInput type="text" formControlName="serviceName" placeholder="Service Name">
       <mat-error *ngIf="form.get('serviceName').invalid">Please enter a service name.</mat-error>
-    </mat-form-field>
+    </mat-form-field> -->
     <mat-form-field>
       <input matInput type="text" formControlName="serviceUrl" placeholder="Service Url">
       <mat-error *ngIf="form.get('serviceUrl').invalid">Please enter a service url.</mat-error>

@@ -1,22 +1,26 @@
 <div class="content">
   <div>
     <div class="mat-des-container">
-      <h2>System Defined</h2>
-      <div cdkDropList #systemDefinedList="cdkDropList" [cdkDropListData]="systemDefined"
-        [cdkDropListConnectedTo]="[userModifiedList]" class="mat-des-list" (cdkDropListDropped)="drop($event)">
-        <div class="mat-des-box" *ngFor="let item of systemDefined">{{item}}</div>
+      <h2 class="defined">System Defined</h2>
+      <div class="header rank">Rank</div>
+      <div class="header name">Property Name</div>
+      <div cdkDropList #systemDefinedList="cdkDropList" [cdkDropListData]="systemDefined" class="mat-des-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="mat-des-box" *ngFor="let item of systemDefined">{{item.rank}} {{item.name}}</div>
       </div>
     </div>
     <div class="mat-des-container">
-      <h2>User Modified</h2>
-      <div cdkDropList #userModifiedList="cdkDropList" [cdkDropListData]="userModified"
-        [cdkDropListConnectedTo]="[systemDefinedList]" class="mat-des-list" (cdkDropListDropped)="drop($event)">
-        <div class="mat-des-box" *ngFor="let item of userModified" cdkDrag>{{item}}</div>
+      <h2 class="defined">User Modified</h2>
+      <div class="header rank">Rank</div>
+      <div class="header name">Property Name</div>
+      <div cdkDropList #userModifiedList="cdkDropList" [cdkDropListData]="userModified" class="mat-des-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="mat-des-box" *ngFor="let item of userModified" cdkDrag>{{item.rank}} {{item.name}}</div>
       </div>
     </div>
   </div>
   <div>
-    <button mat-raised-button color="accent" type="reset">Reset</button>
+    <button mat-raised-button color="accent" type="reset" (click)="resetPriority()">Reset</button>
     <span class="spacer"></span>
     <button mat-raised-button color="primary" type="submit" (click)="updatePriority()">Update Priority</button>
   </div>

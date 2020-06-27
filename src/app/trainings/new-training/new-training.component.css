@@ -4,9 +4,13 @@ mat-card {
   width: 80%;
 }
 
-mat-form-field,
+mat-form-field {
+  width: 100%;
+}
+
 textarea {
   width: 100%;
+  min-height:150px;
 }
 .color {
   background-color: green;
@@ -33,13 +37,13 @@ mat-spinner {
   width: 40%;
 }
 
-
 .field-type {
   padding-left: 30px;
   width: 50%;
 }
 
-.request, .response {
+.request,
+.response {
   color: darkorange;
 }
 
@@ -68,6 +72,6 @@ mat-spinner {
 }
 
 .add {
-    float: right;
-    margin-top: -50px;
+  float: right;
+  margin-top: -50px;
 }

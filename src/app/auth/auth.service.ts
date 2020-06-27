@@ -3,8 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthData } from './auth-data.model';
 import { Subject } from 'rxjs';
-import { environment } from "../../environments/environment";
-const BACKEND_URL = "environment.apiUrl" + "/user/";
+const BACKEND_URL = 'environment.apiUrl' + '/user/';
 
 
 @Injectable({ providedIn: 'root' })
@@ -47,7 +46,7 @@ export class AuthService {
   private getAuthData() {
     const token = localStorage.getItem('token');
     const expiration = localStorage.getItem('expiration');
-    const userId = localStorage.getItem('userId');
+    const userIdVal = localStorage.getItem('userId');
     if (!token || !expiration) {
       return;
     }
@@ -55,7 +54,7 @@ export class AuthService {
     return {
       token: this.token,
       expirationDate: new Date(expiration),
-      userId: userId,
+      userId: userIdVal,
     };
   }
 
@@ -104,7 +103,7 @@ export class AuthService {
         () => {
           this.router.navigate(['/']);
         },
-        (error) => {
+        () => {
           this.authStatusListener.next(false);
         }
       );
@@ -112,8 +111,8 @@ export class AuthService {
 
   login(email: string, password: string) {
     const authData: AuthData = {
-      email: email,
-      password: password,
+      email,
+      password,
     };
 
     this.http
@@ -142,7 +141,7 @@ export class AuthService {
             this.router.navigate(['/']);
           }
         },
-        (error) => {
+        () => {
           this.authStatusListener.next(false);
         }
       );

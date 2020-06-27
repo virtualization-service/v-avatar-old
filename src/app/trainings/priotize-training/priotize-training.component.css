@@ -58,9 +58,38 @@
   min-height: 300px;
   height: auto;
   border-radius: 15px !important;
-  margin: 2% auto;
+  margin: 0% auto;
 }
 
 .spacer {
   margin: 10px;
+}
+
+.rank {
+  width: 25%;
+}
+.name {
+  width: 75%;
+}
+
+.defined {
+  padding: 10px 25px;
+  border-bottom: solid 1px #ccc;
+  color: white;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  background: lightseagreen;
+}
+
+.header {
+  display: inline-flex;
+  font-weight: bold;
+  padding: 15px 25px;
+  border-bottom: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  background: white;
 }

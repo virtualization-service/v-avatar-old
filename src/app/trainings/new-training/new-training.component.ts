@@ -52,7 +52,7 @@ export class NewTrainingComponent implements OnInit {
     this.actionType = this.actionTypes.values.name;
     this.methodType = this.methodTypes.values.name;
     this.form = new FormGroup({
-      serviceName: new FormControl(null, { validators: [Validators.required, Validators.minLength(3)] }),
+      // serviceName: new FormControl(null, { validators: [Validators.required, Validators.minLength(3)] }),
       serviceUrl: new FormControl(null, { validators: [Validators.required, Validators.minLength(3)] }),
       authType: new FormControl(null, { validators: [Validators.required] }),
       actionType: new FormControl(),
@@ -148,7 +148,7 @@ export class NewTrainingComponent implements OnInit {
         request: {
           headers: {
             actionType: this.form.value.actionType,
-            method: this.form.value.methodType,
+            method: this.form.value.actionType === 'SOAP' ? 'POST' : this.form.value.methodType,
             soapAction: this.form.value.soapAction
           },
           raw_data: this.form.value.requestContent
@@ -156,7 +156,7 @@ export class NewTrainingComponent implements OnInit {
         response: {
           headers: {
             actionType: this.form.value.actionType,
-            method: this.form.value.methodType,
+            method: this.form.value.actionType === 'SOAP' ? 'POST' : this.form.value.methodType,
             soapAction: this.form.value.soapAction
           },
           raw_data: this.form.value.responseContent
