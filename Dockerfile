@@ -17,7 +17,7 @@ RUN npm install
 COPY . .
 
 #### generate build --prod
-RUN npm run build --prod
+RUN npm run build --production
 
 ### STAGE 2: Run ###
 FROM nginxinc/nginx-unprivileged
@@ -26,7 +26,7 @@ FROM nginxinc/nginx-unprivileged
 COPY ./config/nginx.conf /etc/nginx/conf.d/default.conf
 
 #### copy artifact build from the 'build environment'
-COPY --from=build /usr/src/app/dist/v-avatar /usr/share/nginx/html
+COPY --from=build /usr/src/app/dist/client /usr/share/nginx/html
 
 #### don't know what this is, but seems cool and techy
 CMD ["nginx", "-g", "daemon off;"]
