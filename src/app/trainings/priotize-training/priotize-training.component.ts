@@ -62,10 +62,11 @@ export class PriotizeTrainingComponent implements OnInit {
   updatePriority() {
     this.rankerRequest = {
       data: this.priotizedArr,
-      operation: this.operationName
+      operation: this.operationName,
     };
     this.trainingsService.updateRakerTraining(this.rankerRequest);
   }
+
   resetPriority() {
     const slowClone = [...this.systemDefined];
     this.userModified = slowClone;

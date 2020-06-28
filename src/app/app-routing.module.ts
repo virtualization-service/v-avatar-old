@@ -9,7 +9,7 @@ import { ConfigureTrainingComponent } from './trainings/configure-training/confi
 const routes: Routes = [
   { path: '', component: ViewTrainingComponent },
   { path: 'new-training', component: NewTrainingComponent },
-  { path: 'view-training', component: ViewTrainingComponent },
+  { path: 'view-trainings', component: ViewTrainingComponent },
   { path: 'priotize/:serviceId', component: PriotizeTrainingComponent },
   { path: 'configure-training', component: ConfigureTrainingComponent },
   { path: 'edit/:trainingId', component: PriotizeTrainingComponent },

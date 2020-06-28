@@ -1,8 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  FormBuilder,
+  FormArray,
+} from '@angular/forms';
 import { TrainingService } from '../training.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Training, ActionType, TrainingInfo } from '../training.model';
+import { ActionType, TrainingInfo } from '../training.model';
 
 @Component({
   selector: 'app-new-training',
@@ -16,9 +22,7 @@ export class NewTrainingComponent implements OnInit {
     private formBuilder: FormBuilder
   ) {}
   private mode = 'new-training';
-  private trainingId: string;
   isLoading = false;
-  training: Training;
   trainingInfo: TrainingInfo;
   form: FormGroup;
   requestHeaderForm: FormGroup;
@@ -52,8 +56,9 @@ export class NewTrainingComponent implements OnInit {
     this.actionType = this.actionTypes.values.name;
     this.methodType = this.methodTypes.values.name;
     this.form = new FormGroup({
-      // serviceName: new FormControl(null, { validators: [Validators.required, Validators.minLength(3)] }),
-      serviceUrl: new FormControl(null, { validators: [Validators.required, Validators.minLength(3)] }),
+      serviceUrl: new FormControl(null, {
+        validators: [Validators.required, Validators.minLength(3)],
+      }),
       authType: new FormControl(null, { validators: [Validators.required] }),
       actionType: new FormControl(),
       soapAction: new FormControl(),
@@ -64,8 +69,12 @@ export class NewTrainingComponent implements OnInit {
       tokenValue: new FormControl(),
       headerKey: new FormControl(),
       headerValue: new FormControl(),
-      requestContent: new FormControl(null, { validators: [Validators.required] }),
-      responseContent: new FormControl(null, { validators: [Validators.required] }),
+      requestContent: new FormControl(null, {
+        validators: [Validators.required],
+      }),
+      responseContent: new FormControl(null, {
+        validators: [Validators.required],
+      }),
     });
     this.requestHeaderForm = this.formBuilder.group({
       requestHeaders: this.formBuilder.array([
@@ -79,7 +88,6 @@ export class NewTrainingComponent implements OnInit {
     });
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       this.mode = 'new-training';
-      this.trainingId = null;
     });
   }
 
@@ -126,7 +134,8 @@ export class NewTrainingComponent implements OnInit {
       trainingInfo.request.headers[reqHeader.headerKey] = reqHeader.headerValue;
     }
     for (const resHeader of resHeaders) {
-      trainingInfo.response.headers[resHeader.headerKey] = resHeader.headerValue;
+      trainingInfo.response.headers[resHeader.headerKey] =
+        resHeader.headerValue;
     }
   }
 
@@ -143,28 +152,34 @@ export class NewTrainingComponent implements OnInit {
           username: this.form.value.username,
           password: this.form.value.password,
           tokenkey: this.form.value.tokenkey,
-          tokenValue: this.form.value.tokenValue
+          tokenValue: this.form.value.tokenValue,
         },
         request: {
           headers: {
             actionType: this.form.value.actionType,
-            method: this.form.value.actionType === 'SOAP' ? 'POST' : this.form.value.methodType,
-            soapAction: this.form.value.soapAction
+            method:
+              this.form.value.actionType === 'SOAP'
+                ? 'POST'
+                : this.form.value.methodType,
+            soapAction: this.form.value.soapAction,
           },
-          raw_data: this.form.value.requestContent
+          raw_data: this.form.value.requestContent,
         },
         response: {
           headers: {
             actionType: this.form.value.actionType,
-            method: this.form.value.actionType === 'SOAP' ? 'POST' : this.form.value.methodType,
-            soapAction: this.form.value.soapAction
+            method:
+              this.form.value.actionType === 'SOAP'
+                ? 'POST'
+                : this.form.value.methodType,
+            soapAction: this.form.value.soapAction,
           },
-          raw_data: this.form.value.responseContent
-        }
+          raw_data: this.form.value.responseContent,
+        },
       };
       this.updateTrainingInfo(this.trainingInfo);
       this.trainingsService.addNewTraining(this.trainingInfo);
     }
-    // this.form.reset();
+    this.form.reset();
   }
 }

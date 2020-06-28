@@ -1,13 +1,3 @@
-export interface Training {
-  id: string;
-  serviceName: string;
-  serviceUrl: string;
-  authType: string;
-  requestContent: string;
-  responseContent: string;
-  creator: string;
-}
-
 export interface TrainedData {
   ServiceName: string;
   Priotize: string;

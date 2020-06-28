@@ -1,10 +1,6 @@
 <mat-card>
   <mat-spinner *ngIf="isLoading"></mat-spinner>
   <form [formGroup]="form" (submit)="onSaveTraining()" *ngIf="!isLoading">
-    <!-- <mat-form-field>
-      <input matInput type="text" formControlName="serviceName" placeholder="Service Name">
-      <mat-error *ngIf="form.get('serviceName').invalid">Please enter a service name.</mat-error>
-    </mat-form-field> -->
     <mat-form-field>
       <input matInput type="text" formControlName="serviceUrl" placeholder="Service Url:">
       <mat-error *ngIf="form.get('serviceUrl').invalid">Please enter a service url.</mat-error>
@@ -86,7 +82,8 @@
                   </div>
                 </div>
                 <div class="add-content">
-                  <button mat-raised-button color="primary" class="add" type="button" (click)="addHeaderKeys('request')">
+                  <button mat-raised-button color="primary" class="add" type="button"
+                    (click)="addHeaderKeys('request')">
                     <span class="material-icons">add</span>
                   </button>
                 </div>
@@ -122,7 +119,8 @@
                   </div>
                 </div>
                 <div class="add-content">
-                  <button mat-raised-button color="primary" class="add" type="button" (click)="addHeaderKeys('response')">
+                  <button mat-raised-button color="primary" class="add" type="button"
+                    (click)="addHeaderKeys('response')">
                     <span class="material-icons">add</span>
                   </button>
                 </div>
