@@ -6,7 +6,7 @@
       <mat-error *ngIf="form.get('serviceName').invalid">Please enter a service name.</mat-error>
     </mat-form-field> -->
     <mat-form-field>
-      <input matInput type="text" formControlName="serviceUrl" placeholder="Service Url">
+      <input matInput type="text" formControlName="serviceUrl" placeholder="Service Url:">
       <mat-error *ngIf="form.get('serviceUrl').invalid">Please enter a service url.</mat-error>
     </mat-form-field>
     <div>
@@ -62,76 +62,83 @@
         </mat-form-field>
       </div>
     </div>
-    <mat-label class="request">Request Content:</mat-label>
-    <mat-divider></mat-divider>
+    <br />
+    <div class="line">Request & Response Info</div>
     <mat-tab-group>
-      <mat-tab label="Headers">
-        <!-- <app-header-items></app-header-items> -->
-        <div [formGroup]="requestHeaderForm">
-          <div formArrayName="requestHeaders">
-            <div class="remove-content" *ngFor="let item of requestHeaders.controls; let pointIndex = index" [formGroupName]="pointIndex">
-              <div>
-                <mat-form-field class="key-field">
-                  <input matInput type="text" formControlName="headerKey" placeholder="Key:">
-                </mat-form-field>
-                <mat-form-field class="value-field">
-                  <input matInput type="text" formControlName="headerValue" placeholder="Value:">
-                </mat-form-field>
-                <button mat-raised-button color="primary" class="remove" type="button" (click)="removeHeaderKeys(pointIndex, 'request')">
-                  <span class="material-icons">remove</span>
-                </button>
-              </div>      
+      <mat-tab label="Request Content">
+        <mat-tab-group>
+          <mat-tab label="Headers">
+            <div [formGroup]="requestHeaderForm">
+              <div formArrayName="requestHeaders">
+                <div class="remove-content" *ngFor="let item of requestHeaders.controls; let pointIndex = index"
+                  [formGroupName]="pointIndex">
+                  <div>
+                    <mat-form-field class="key-field">
+                      <input matInput type="text" formControlName="headerKey" placeholder="Key:">
+                    </mat-form-field>
+                    <mat-form-field class="value-field">
+                      <input matInput type="text" formControlName="headerValue" placeholder="Value:">
+                    </mat-form-field>
+                    <button mat-raised-button color="primary" class="remove" type="button"
+                      (click)="removeHeaderKeys(pointIndex, 'request')">
+                      <span class="material-icons">remove</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="add-content">
+                  <button mat-raised-button color="primary" class="add" type="button" (click)="addHeaderKeys('request')">
+                    <span class="material-icons">add</span>
+                  </button>
+                </div>
+              </div>
             </div>
-            <div class="add-content">
-              <button mat-raised-button color="primary" type="button" (click)="addHeaderKeys('request')">
-                <span class="material-icons">add</span>
-              </button>
-            </div>
-          </div>
-        </div>        
+          </mat-tab>
+          <mat-tab label="Request Body">
+            <mat-form-field>
+              <textarea matInput formControlName="requestContent" placeholder="Request Content"></textarea>
+              <mat-error *ngIf="form.get('requestContent').invalid">Please enter request content.</mat-error>
+            </mat-form-field>
+          </mat-tab>
+        </mat-tab-group>
       </mat-tab>
-      <mat-tab label="Request Body">
-        <mat-form-field>
-          <textarea matInput formControlName="requestContent" placeholder="Request Content"></textarea>
-          <mat-error *ngIf="form.get('requestContent').invalid">Please enter request content.</mat-error>
-        </mat-form-field>
+      <mat-tab label="Response Content">
+        <mat-tab-group>
+          <mat-tab label="Headers">
+            <div [formGroup]="responseHeaderForm">
+              <div formArrayName="responseHeaders">
+                <div class="remove-content" *ngFor="let item of responseHeaders.controls; let pointIndex = index"
+                  [formGroupName]="pointIndex">
+                  <div>
+                    <mat-form-field class="key-field">
+                      <input matInput type="text" formControlName="headerKey" placeholder="Key:">
+                    </mat-form-field>
+                    <mat-form-field class="value-field">
+                      <input matInput type="text" formControlName="headerValue" placeholder="Value:">
+                    </mat-form-field>
+                    <button mat-raised-button color="primary" class="remove" type="button"
+                      (click)="removeHeaderKeys(pointIndex, 'response')">
+                      <span class="material-icons">remove</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="add-content">
+                  <button mat-raised-button color="primary" class="add" type="button" (click)="addHeaderKeys('response')">
+                    <span class="material-icons">add</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </mat-tab>
+          <mat-tab label="Response Body">
+            <mat-form-field>
+              <textarea matInput formControlName="responseContent" placeholder="Response Content"></textarea>
+              <mat-error *ngIf="form.get('responseContent').invalid">Please enter response content.</mat-error>
+            </mat-form-field>
+          </mat-tab>
+        </mat-tab-group>
       </mat-tab>
     </mat-tab-group>
-    <mat-label class="response">Response Content:</mat-label>
-    <mat-divider></mat-divider>
-    <mat-tab-group>
-      <mat-tab label="Headers">
-        <!-- <app-header-items></app-header-items> -->
-        <div [formGroup]="responseHeaderForm">
-          <div formArrayName="responseHeaders">
-            <div class="remove-content" *ngFor="let item of responseHeaders.controls; let pointIndex = index" [formGroupName]="pointIndex">
-              <div>
-                <mat-form-field class="key-field">
-                  <input matInput type="text" formControlName="headerKey" placeholder="Key:">
-                </mat-form-field>
-                <mat-form-field class="value-field">
-                  <input matInput type="text" formControlName="headerValue" placeholder="Value:">
-                </mat-form-field>
-                <button mat-raised-button color="primary" class="remove" type="button" (click)="removeHeaderKeys(pointIndex, 'response')">
-                  <span class="material-icons">remove</span>
-                </button>
-              </div>      
-            </div>
-            <div class="add-content">
-              <button mat-raised-button color="primary" type="button" (click)="addHeaderKeys('response')">
-                <span class="material-icons">add</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </mat-tab>
-      <mat-tab label="Response Body">
-        <mat-form-field>
-          <textarea matInput formControlName="responseContent" placeholder="Response Content"></textarea>
-          <mat-error *ngIf="form.get('responseContent').invalid">Please enter response content.</mat-error>
-        </mat-form-field>
-      </mat-tab>
-    </mat-tab-group><br>
-    <button mat-raised-button class="color" color="accent" type="submit">Save Training</button>
+    <br /><br />
+    <button mat-raised-button color="primary" type="submit">Save</button>
   </form>
 </mat-card>

@@ -1,5 +1,5 @@
 .wrapper {
-  width: 80%;
+  width: 70%;
   flex-wrap: wrap;
   margin: 0 auto;
 }
@@ -68,4 +68,8 @@ tr.tbl-row:not(.mat-des-expanded-row):active {
 
 mat-spinner {
   margin: auto;
+}
+
+.mat-column-ServiceName {
+  flex: 10 0 10px;
 }

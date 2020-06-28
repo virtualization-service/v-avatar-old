@@ -20,12 +20,10 @@ import { MatTableModule } from '@angular/material/table';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { FormsModule } from '@angular/forms';
 import { MatChipsModule } from '@angular/material/chips';
-import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   exports: [
     FormsModule,
-    MatSortModule,
     MatChipsModule,
     MatAutocompleteModule,
     MatCardModule,

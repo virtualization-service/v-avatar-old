@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { Training, TrainingInfo, Rankers, ServiceOperationNames } from './training.model';
+import { Training, TrainingInfo, Rankers, TrainedData } from './training.model';
 import { map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -21,9 +21,9 @@ export class TrainingService {
     rankers: Rankers;
   }>();
 
-  private serviceOperationNames: ServiceOperationNames[];
+  private trainedData: TrainedData[];
   private trainedServicesUpdated = new Subject<{
-    serviceOperationNames: ServiceOperationNames[];
+    trainedData: TrainedData[];
   }>();
   constructor(private http: HttpClient, private dialog: MatDialog, private router: Router) {}
 
@@ -38,7 +38,7 @@ export class TrainingService {
     .subscribe(
       (responseData) => {
         this.dialog.open(MessageDialogComponent, { data: { message: responseData.result } });
-        this.router.navigate(['/new-training']);
+        this.router.navigate(['/']);
       },
       (error) => {
         this.dialog.open(MessageDialogComponent, { data: { message: error } });
@@ -76,12 +76,10 @@ export class TrainingService {
     this.http.post<{ result: string; }>(rankerUrl, requestData, httpOptions)
     .subscribe(
       (responseData) => {
-        debugger;
         this.dialog.open(MessageDialogComponent, { data: { message: responseData.result } });
         this.router.navigate(['/']);
       },
       (error) => {
-        debugger;
         this.dialog.open(MessageDialogComponent, { data: { message: error } });
       }
     );
@@ -94,21 +92,21 @@ export class TrainingService {
       map((trainedServices) => {
         const resultServices = Object.keys(trainedServices).map((ind) => {
           return {
-            serviceName: trainedServices[ind],
-            serviceUrl: '',
-            authType: '',
-            methodType: ''
+            ServiceName: trainedServices[ind],
+            Priotize: '',
+            Update: '',
+            Delete: ''
           };
         });
         return {
-          serviceOperationNames: resultServices
+          trainedData: resultServices
         };
       })
     )
     .subscribe((tansformedNames) => {
-     this.serviceOperationNames = tansformedNames.serviceOperationNames;
+     this.trainedData = tansformedNames.trainedData;
      this.trainedServicesUpdated.next({
-      serviceOperationNames: this.serviceOperationNames
+      trainedData: this.trainedData
       });
     });
   }

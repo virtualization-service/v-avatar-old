@@ -1,7 +1,7 @@
 mat-card {
   flex-wrap: wrap;
   margin: 0 auto;
-  width: 80%;
+  width: 60%;
 }
 
 mat-form-field {
@@ -42,18 +42,20 @@ mat-spinner {
   width: 50%;
 }
 
-.request,
-.response {
-  color: darkorange;
+.line{
+  width: auto;
+  border-bottom: 1px solid grey;
+  font-size: 18px;
+  color: #3f51b5;
 }
 
 .key-field {
-  width: 40%;
+  width: 42%;
 }
 
 .value-field {
-  margin-left: 20px;
-  width: 40%;
+  margin-left: 10px;
+  width: 42%;
 }
 
 .remove-content {
@@ -67,11 +69,17 @@ mat-spinner {
 }
 
 .remove {
-  margin-left: 40px;
+  margin-left: 32px;
   background-color: red;
+  min-width: 30px;
+  line-height: 30px;
+  padding: 0 10px;
+  border-radius: 5px;
 }
 
 .add {
-  float: right;
-  margin-top: -50px;
+  min-width: 30px;
+  line-height: 30px;
+  padding: 0 10px;
+  border-radius: 5px;
 }

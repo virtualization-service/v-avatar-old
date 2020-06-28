@@ -8,11 +8,11 @@ export interface Training {
   creator: string;
 }
 
-export interface ServiceOperationNames {
-  serviceName: string;
-  serviceUrl: string;
-  authType: string;
-  methodType: string;
+export interface TrainedData {
+  ServiceName: string;
+  Priotize: string;
+  Update: string;
+  Delete: string;
 }
 
 export interface Rankers {

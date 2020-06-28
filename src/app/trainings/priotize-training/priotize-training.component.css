@@ -16,7 +16,7 @@
 }
 
 .mat-des-box {
-  padding: 15px 25px;
+  padding: 12px 25px;
   border-bottom: solid 1px #ccc;
   color: rgba(0, 0, 0, 0.87);
   display: flex;
@@ -57,7 +57,7 @@
   text-align: center;
   min-height: 300px;
   height: auto;
-  border-radius: 15px !important;
+  border-radius: 12px !important;
   margin: 0% auto;
 }
 
@@ -73,7 +73,7 @@
 }
 
 .defined {
-  padding: 10px 25px;
+  padding: 8px 25px;
   border-bottom: solid 1px #ccc;
   color: white;
   align-items: center;
@@ -85,7 +85,7 @@
 .header {
   display: inline-flex;
   font-weight: bold;
-  padding: 15px 25px;
+  padding: 12px 25px;
   border-bottom: solid 1px #ccc;
   color: rgba(0, 0, 0, 0.87);
   align-items: center;

@@ -1,9 +1,14 @@
 import { Component, OnInit, ViewChild, Input, OnDestroy } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Training, ServiceOperationNames } from '../training.model';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
+import { Training, TrainedData } from '../training.model';
 import { TrainingService } from '../training.service';
 import { PageEvent } from '@angular/material/paginator';
 import { AuthService } from 'src/app/auth/auth.service';
@@ -17,24 +22,26 @@ import { Subscription } from 'rxjs';
     trigger('detailExpand', [
       state('collapsed', style({ height: '0px', minHeight: '0' })),
       state('expanded', style({ height: '*' })),
-      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+      transition(
+        'expanded <=> collapsed',
+        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')
+      ),
     ]),
   ],
 })
 export class ViewTrainingComponent implements OnInit, OnDestroy {
   router: any;
-  columnsToDisplay = ['serviceName', 'authType', 'actionType', 'methodType'];
-  dataSource: MatTableDataSource<ServiceOperationNames>;
+  columnsToDisplay = ['ServiceName', 'Priotize', 'Update', 'Delete'];
+  dataSource: MatTableDataSource<TrainedData>;
   expandedElement: Training | null;
   constructor(
     public trainingsService: TrainingService,
     private authService: AuthService
-  ) {  }
+  ) {}
   private mode = 'new-training';
-  private trainingId: string;
   isLoading = true;
   trainingsSub: any;
-  @Input() serviceNames: ServiceOperationNames [];
+  @Input() trainedData: TrainedData[];
   records = 10;
   trainingsPerPage = 10;
   currentPage = 1;
@@ -43,7 +50,6 @@ export class ViewTrainingComponent implements OnInit, OnDestroy {
   userIsAuthenticated = false;
   userId: string;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   ngOnInit() {
     this.isLoading = true;
@@ -51,15 +57,13 @@ export class ViewTrainingComponent implements OnInit, OnDestroy {
     this.userId = this.authService.getUserId();
     this.trainingsSub = this.trainingsService
       .getTrainedServicesUpdateListener()
-      .subscribe((postData) => {
+      .subscribe((data) => {
         setTimeout(() => {
           this.isLoading = false;
         }, 2000);
-        this.serviceNames = postData.serviceOperationNames;
-        this.dataSource = new MatTableDataSource(postData.serviceOperationNames);
-        this.records = postData.serviceOperationNames.length;
+        this.dataSource = new MatTableDataSource(data.trainedData);
+        this.records = data.trainedData.length;
         this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
       });
 
     this.userIsAuthenticated = this.authService.getIsAuth();
@@ -85,17 +89,16 @@ export class ViewTrainingComponent implements OnInit, OnDestroy {
     this.isLoading = true;
   }
 
-  onChangedPage(pageData: PageEvent) {
+  onChangedPage(event: PageEvent) {
     this.isLoading = true;
-    this.currentPage = pageData.pageIndex + 1;
-    this.trainingsPerPage = pageData.pageSize;
+    this.currentPage = event.pageIndex + 1;
+    this.trainingsPerPage = event.pageSize;
     this.trainingsService.getTrainedServices();
-    console.log(pageData);
+    console.log(event);
   }
 
   ngOnDestroy() {
     this.trainingsSub.unsubscribe();
     this.authStatusSub.unsubscribe();
   }
-
 }

@@ -165,6 +165,6 @@ export class NewTrainingComponent implements OnInit {
       this.updateTrainingInfo(this.trainingInfo);
       this.trainingsService.addNewTraining(this.trainingInfo);
     }
-    this.form.reset();
+    // this.form.reset();
   }
 }
