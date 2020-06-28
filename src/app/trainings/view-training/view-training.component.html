@@ -21,9 +21,12 @@
       <ng-container matColumnDef="Update">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Update</mat-header-cell>
         <mat-cell *matCellDef="let element">
-          <a mat-button color="accent" [routerLink]="['/edit/', element.id]">
+          <a mat-button color="accent" href="javascript:alert('Update action is coming soon...!!!');">
             <mat-icon>edit</mat-icon>
           </a>
+          <!-- <a mat-button color="accent" [routerLink]="['/edit/', element.id]">
+            <mat-icon>edit</mat-icon>
+          </a> -->
         </mat-cell>
       </ng-container>
       <ng-container matColumnDef="Delete">
