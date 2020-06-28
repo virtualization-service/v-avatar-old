@@ -11,10 +11,6 @@
   background: white;
 }
 
-.config-h2 {
-  margin: 0 8px 16px;
-}
-
 .config-section {
   display: flex;
   align-content: center;
@@ -29,7 +25,7 @@
 
 .mat-slider-horizontal {
   height: 50px !important;
-  width: 200px  !important;
+  width: 200px !important;
 }
 
 .mat-card + .mat-card {
@@ -41,8 +37,11 @@
 }
 
 .responsetime {
-  margin-top: 10px;
-  font-weight: bold;
-  font-size: 20px;
-  line-height: normal;
+  padding: 8px 25px;
+  border-bottom: solid 1px #ccc;
+  color: white;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  background: lightseagreen;
 }
