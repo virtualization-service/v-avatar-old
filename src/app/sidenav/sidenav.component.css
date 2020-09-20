@@ -93,6 +93,7 @@ ul {
   width: 110px;
   margin-top: -20px;
   margin-left: 10px;
+  filter: invert(1);
 }
 
 .vavatar-logo {
@@ -100,6 +101,7 @@ ul {
   display: inline-block;
   height: 64px;
   position: relative;
+  filter: invert(1);
 }
 
 .avatar-text {
