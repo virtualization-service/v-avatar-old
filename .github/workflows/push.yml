@@ -35,9 +35,9 @@ jobs:
       run: |
         echo ::set-output name=repo::$(echo ${GITHUB_REPOSITORY})
         echo ::set-output name=sha_short::$(git rev-parse --short HEAD)
-        echo ::set-output name=image-name::$(echo quay.io/neinnovationorg/lrqi-ui})
+        echo ::set-output name=image-name::$(echo quay.io/neinnovationorg/avatar-ui})
         echo ::set-output name=branch::${GITHUB_REF#refs/heads/}
-        echo ::set-output name=docker_repo::$(echo /neinnovationorg/lrqi-ui) 
+        echo ::set-output name=docker_repo::$(echo /neinnovationorg/avatar-ui) 
     - name: Login to Podman
       id: login
       run:  |
@@ -60,15 +60,5 @@ jobs:
         # Oc command to be executed
         cmd: |
           'version'
-          'project virtualization'
-          'tag --source=docker quay.io/neinnovationorg/avatar-ui:${{ steps.extract_branch.outputs.branch }} virtualization/avatar-ui:${{ steps.extract_branch.outputs.branch }}'
-    - name: Scan Image
-      uses: Azure/container-scan@v0
-      continue-on-error: true
-      with:
-        image-name: quay.io/neinnovationorg/avatar-ui:${{ steps.extract_branch.outputs.branch }}
-        username: ${{ secrets.docker_username }}
-        password: ${{ secrets.docker_password }}
-        token: ${{ github.token }}
-        severity-threshold: HIGH
-        run-quality-checks: false
+          'project vavtar-services'
+          'tag --source=docker quay.io/neinnovationorg/avatar-ui:${{ steps.extract_branch.outputs.branch }} vavtar-services/avatar-ui:${{ steps.extract_branch.outputs.branch }}'
