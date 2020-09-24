@@ -7,13 +7,13 @@ import { Router } from '@angular/router';
 import { MessageDialogComponent } from '../message-dialog/message-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 const newTrainingUrl =
-  'http://controller-service-virtualization.apps.openshift.ne-innovation.com/virtualization-train';
+  'http://controller-service-vavtar-services.apps.openshift.ne-innovation.com/virtualization-train';
 const exitingTrainingsUrl =
-  'http://datasaver-virtualization.apps.openshift.ne-innovation.com/api/Data/operations';
+  'http://datasaver-vavtar-services.apps.openshift.ne-innovation.com/api/Data/operations';
 const deleteTrainingUrl =
-  'http://datasaver-virtualization.apps.openshift.ne-innovation.com/api/Data/operation';
+  'http://datasaver-vavtar-services.apps.openshift.ne-innovation.com/api/Data/operation';
 const rankTrainingUrl =
-  'http://datasaver-virtualization.apps.openshift.ne-innovation.com/api/Data/ranker';
+  'http://datasaver-vavtar-services.apps.openshift.ne-innovation.com/api/Data/ranker';
 
 @Injectable({ providedIn: 'root' })
 export class TrainingService {
