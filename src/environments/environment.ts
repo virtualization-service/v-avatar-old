@@ -5,9 +5,9 @@
 export const environment = {
   production: false,
   apiUrl: 'http://localhost:3000/api',
-  virtualizationUrl: 'http://controller-service--vavtar-services.apps.openshift.ne-innovation.com/virtualization-train',
-  operationsUrl: 'http://datasaver--vavtar-services.apps.openshift.ne-innovation.com/api/Data/operations',
-  priotizeTrainingUrl: 'http://datasaver--vavtar-services.apps.openshift.ne-innovation.com/api/Data/ranker?operation=/WeatherWS/Weather.asmx-GetWeatherByZip'
+  virtualizationUrl: 'http://controller-service-vavtar-services.apps.openshift.ne-innovation.com/virtualization-train',
+  operationsUrl: 'http://datasaver-vavtar-services.apps.openshift.ne-innovation.com/api/Data/operations',
+  priotizeTrainingUrl: 'http://datasaver-vavtar-services.apps.openshift.ne-innovation.com/api/Data/ranker?operation=/WeatherWS/Weather.asmx-GetWeatherByZip'
 };
 
 /*
