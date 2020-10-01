@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
 import { MessageDialogComponent } from '../message-dialog/message-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { environment } from 'src/environments/environment';
-import { env } from 'process';
 const newTrainingUrl = environment.virtualizationUrl;
 const exitingTrainingsUrl = environment.operationsUrl;
 const deleteTrainingUrl = environment.operationUrl;

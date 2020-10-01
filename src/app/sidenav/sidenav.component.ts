@@ -29,4 +29,14 @@ export class SideNavComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.authListernerSubs.unsubscribe();
   }
+
+  downloadMyFile() {
+    const link = document.createElement('a');
+    link.setAttribute('target', '_new');
+    link.setAttribute('href', 'assets/virtualization-help.pdf');
+    link.setAttribute('download', 'assets/virtualization-help.pdf');
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  }
 }

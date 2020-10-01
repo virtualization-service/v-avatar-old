@@ -69,12 +69,11 @@ export class NewTrainingComponent implements OnInit {
       tokenValue: new FormControl(),
       headerKey: new FormControl(),
       headerValue: new FormControl(),
-      requestContent: new FormControl(null, {
-        validators: [Validators.required],
-      }),
-      responseContent: new FormControl(null, {
-        validators: [Validators.required],
-      }),
+      requestContent: new FormControl(),
+      // responseContent: new FormControl(null, {
+      //   validators: [Validators.required],
+      // }),
+      responseContent: new FormControl(),
     });
     this.requestHeaderForm = this.formBuilder.group({
       requestHeaders: this.formBuilder.array([
@@ -131,11 +130,14 @@ export class NewTrainingComponent implements OnInit {
     const reqHeaders = this.requestHeaderForm.value.requestHeaders;
     const resHeaders = this.responseHeaderForm.value.responseHeaders;
     for (const reqHeader of reqHeaders) {
-      trainingInfo.request.headers[reqHeader.headerKey] = reqHeader.headerValue;
+      if (reqHeader.headerKey !== '')
+        trainingInfo.request.headers[reqHeader.headerKey] =
+          reqHeader.headerValue;
     }
     for (const resHeader of resHeaders) {
-      trainingInfo.response.headers[resHeader.headerKey] =
-        resHeader.headerValue;
+      if (resHeader.headerKey !== '')
+        trainingInfo.response.headers[resHeader.headerKey] =
+          resHeader.headerValue;
     }
   }
 
@@ -177,6 +179,9 @@ export class NewTrainingComponent implements OnInit {
           raw_data: this.form.value.responseContent,
         },
       };
+      if (this.form.value.actionType === 'SOAP') {
+        this.trainingInfo.request.headers.soapAction = this.form.value.soapAction;
+      }
       this.updateTrainingInfo(this.trainingInfo);
       this.trainingsService.addNewTraining(this.trainingInfo);
     }
