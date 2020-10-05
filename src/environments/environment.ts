@@ -5,11 +5,11 @@
 export const environment = {
   production: false,
   apiUrl: 'http://localhost:3000/api',
-  virtualizationUrl: 'http://controller-service-vavtar-services.apps.openshift.ne-innovation.com/virtualization-train',
-  operationsUrl: 'http://datasaver-vavtar-services.apps.openshift.ne-innovation.com/api/Data/operations',
-  operationUrl: 'http://datasaver-vavtar-services.apps.openshift.ne-innovation.com/api/Data/operation',
-  priotizeTrainingUrl: 'http://datasaver-vavtar-services.apps.openshift.ne-innovation.com/api/Data/ranker?operation=/WeatherWS/Weather.asmx-GetWeatherByZip',
-  rankerUrl: 'http://datasaver-vavtar-services.apps.openshift.ne-innovation.com/api/Data/ranker'
+  virtualizationUrl: 'http://controller-service-vavtar-services.apps.awsopenshift.ne-innovation.com/virtualization-train',
+  operationsUrl: 'http://datasaver-vavtar-services.apps.awsopenshift.ne-innovation.com/api/Data/operations',
+  operationUrl: 'http://datasaver-vavtar-services.apps.awsopenshift.ne-innovation.com/api/Data/operation',
+  priotizeTrainingUrl: 'http://datasaver-vavtar-services.apps.awsopenshift.ne-innovation.com/api/Data/ranker?operation=/WeatherWS/Weather.asmx-GetWeatherByZip',
+  rankerUrl: 'http://datasaver-vavtar-services.apps.awsopenshift.ne-innovation.com/api/Data/ranker'
 };
 
 /*
