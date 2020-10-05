@@ -21,7 +21,8 @@ import { MessageDialogComponent } from '../message-dialog/message-dialog.compone
     CommonModule,
     ReactiveFormsModule,
     AngularMaterialModule,
-    RouterModule
-  ]
+    RouterModule,
+  ],
+  entryComponents: [MessageDialogComponent],
 })
 export class TrainingModule {}
