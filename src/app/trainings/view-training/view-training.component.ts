@@ -6,21 +6,21 @@ import { TrainingService } from '../training.service';
 import { PageEvent } from '@angular/material/paginator';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Subscription } from 'rxjs';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-training',
   templateUrl: './view-training.component.html',
-  styleUrls: ['./view-training.component.css']
+  styleUrls: ['./view-training.component.css'],
 })
 export class ViewTrainingComponent implements OnInit, OnDestroy {
-  router: any;
   columnsToDisplay = ['ServiceName', 'Priotize', 'Update', 'Delete'];
   dataSource: MatTableDataSource<TrainedData>;
   constructor(
     public trainingsService: TrainingService,
     private authService: AuthService,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    private router: Router
   ) {}
   isLoading = true;
   trainingsSub: any;
@@ -32,6 +32,7 @@ export class ViewTrainingComponent implements OnInit, OnDestroy {
   private authStatusSub: Subscription;
   userIsAuthenticated = false;
   userId: string;
+  filterValue: string;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   ngOnInit() {
@@ -43,6 +44,19 @@ export class ViewTrainingComponent implements OnInit, OnDestroy {
       .subscribe((data) => {
         setTimeout(() => {
           this.isLoading = false;
+          this.route.queryParams.subscribe((params) => {
+            this.filterValue = params['filter'];
+            this.applyFilter();
+            const filteredList = data.trainedData.filter((x) =>
+              x.ServiceName.includes(this.filterValue)
+            );
+
+            if (filteredList.length === 0) {
+              this.router.navigate(['new-training'], {
+                queryParams: { service: this.filterValue },
+              });
+            }
+          });
         }, 2000);
         this.dataSource = new MatTableDataSource(data.trainedData);
         this.records = data.trainedData.length;
@@ -77,13 +91,12 @@ export class ViewTrainingComponent implements OnInit, OnDestroy {
     this.authStatusSub.unsubscribe();
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
+  applyFilter() {
+    const filterValue = this.filterValue;
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
   }
-
 }

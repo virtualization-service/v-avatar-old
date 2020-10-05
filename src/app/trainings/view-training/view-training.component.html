@@ -1,7 +1,7 @@
 <div class="wrapper">
   <mat-form-field>
     <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Service name" />
+    <input matInput [ngModel]="filterValue" (ngModelChange)="applyFilter()" placeholder="Ex. Service name" />
   </mat-form-field>
   <mat-spinner *ngIf="isLoading"></mat-spinner>
   <div class="table-container mat-elevation-z8" *ngIf="records > 0 && !isLoading">

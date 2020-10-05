@@ -88,6 +88,10 @@ export class NewTrainingComponent implements OnInit {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       this.mode = 'new-training';
     });
+
+    this.route.queryParams.subscribe((params) => {
+      this.form.patchValue({ serviceUrl: params.service || '' });
+    });
   }
 
   get requestHeaders() {
