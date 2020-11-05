@@ -45,7 +45,7 @@ export class ViewTrainingComponent implements OnInit, OnDestroy {
         setTimeout(() => {
           this.isLoading = false;
           this.route.queryParams.subscribe((params) => {
-            this.filterValue = params['filter'];
+            this.filterValue = params['filter'] || "";
             this.applyFilter();
             const filteredList = data.trainedData.filter((x) =>
               x.ServiceName.includes(this.filterValue)
@@ -92,7 +92,7 @@ export class ViewTrainingComponent implements OnInit, OnDestroy {
   }
 
   applyFilter() {
-    const filterValue = this.filterValue;
+    const filterValue = this.filterValue || "";
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
     if (this.dataSource.paginator) {
