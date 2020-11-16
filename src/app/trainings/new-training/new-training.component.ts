@@ -57,7 +57,7 @@ export class NewTrainingComponent implements OnInit {
     this.methodType = this.methodTypes.values.name;
     this.form = new FormGroup({
       serviceUrl: new FormControl(null, {
-        validators: [Validators.required, Validators.minLength(3)],
+        validators: [Validators.required, Validators.minLength(2)],
       }),
       authType: new FormControl(null, { validators: [Validators.required] }),
       actionType: new FormControl(),
