@@ -167,7 +167,9 @@ export class NewTrainingComponent implements OnInit {
               this.form.value.actionType === 'SOAP'
                 ? 'POST'
                 : this.form.value.methodType,
-            soapAction: this.form.value.soapAction,
+            ...(this.form.value.actionType === 'SOAP' && {
+              soapAction: this.form.value.soapAction,
+            }),
           },
           raw_data: this.form.value.requestContent,
         },
@@ -178,7 +180,9 @@ export class NewTrainingComponent implements OnInit {
               this.form.value.actionType === 'SOAP'
                 ? 'POST'
                 : this.form.value.methodType,
-            soapAction: this.form.value.soapAction,
+            ...(this.form.value.actionType === 'SOAP' && {
+              soapAction: this.form.value.soapAction,
+            }),
           },
           raw_data: this.form.value.responseContent,
         },
