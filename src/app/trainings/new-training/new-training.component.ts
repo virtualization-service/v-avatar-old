@@ -73,7 +73,7 @@ export class NewTrainingComponent implements OnInit {
       // responseContent: new FormControl(null, {
       //   validators: [Validators.required],
       // }),
-      responseContent: new FormControl(),
+      responseContent: new FormControl("", { validators: [Validators.required] }),
     });
     this.requestHeaderForm = this.formBuilder.group({
       requestHeaders: this.formBuilder.array([
@@ -153,17 +153,17 @@ export class NewTrainingComponent implements OnInit {
     if (this.mode === 'new-training') {
       this.trainingInfo = {
         service: this.form.value.serviceUrl,
-        authorization: {
-          authType: this.form.value.authType,
-          username: this.form.value.username,
-          password: this.form.value.password,
-          tokenkey: this.form.value.tokenkey,
-          tokenValue: this.form.value.tokenValue,
-        },
+        // authorization: {
+        //   authType: this.form.value.authType,
+        //   username: this.form.value.username,
+        //   password: this.form.value.password,
+        //   tokenkey: this.form.value.tokenkey,
+        //   tokenValue: this.form.value.tokenValue,
+        // },
         request: {
           headers: {
             actionType: this.form.value.actionType,
-            method:
+            Method:
               this.form.value.actionType === 'SOAP'
                 ? 'POST'
                 : this.form.value.methodType,
@@ -171,12 +171,12 @@ export class NewTrainingComponent implements OnInit {
               soapAction: this.form.value.soapAction,
             }),
           },
-          raw_data: this.form.value.requestContent,
+          raw_data: this.form.value.requestContent || "",
         },
         response: {
           headers: {
             actionType: this.form.value.actionType,
-            method:
+            Method:
               this.form.value.actionType === 'SOAP'
                 ? 'POST'
                 : this.form.value.methodType,

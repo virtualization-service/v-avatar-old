@@ -18,7 +18,7 @@ export interface RankerData {
 
 export interface TrainingInfo {
   service: string;
-  authorization: Authorization;
+  authorization?: Authorization;
   request: Request;
   response: Response;
 }
@@ -49,5 +49,5 @@ export interface Authorization {
 export interface Headers {
   actionType: string;
   soapAction: string;
-  method: string;
+  Method: string;
 }
